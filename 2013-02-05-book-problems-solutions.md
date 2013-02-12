@@ -127,15 +127,8 @@ A real-world community using Prolog. What problems are they solving with it toda
 
 ```prolog
 % note that reverse/2 is already taken
-revl([X], [X]).
+revl([], []).
 revl(R, [H|T]) :- revl(RT, T), append(RT, [H], R).
-```
-
-Alternative:
-
-```prolog
-reverseList([H], [H]).
-reverseList([H|T], R) :- reverseList(T, T2), append(T2, [H], R).
 ```
 
 **Find the smallest element of a list**

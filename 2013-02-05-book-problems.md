@@ -11,7 +11,7 @@
 
 * Reverse the elements of a list
 * Find the smallest element of a list
-* Sort the emelents of a list
+* Sort the elements of a list
 
 ## Day 3
 

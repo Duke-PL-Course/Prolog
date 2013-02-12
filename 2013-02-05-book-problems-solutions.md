@@ -125,9 +125,72 @@ A real-world community using Prolog. What problems are they solving with it toda
 
 **Reverse the elements of a list**
 
+```prolog
+% note that reverse/2 is already taken
+revl([X], [X]).
+revl(R, [H|T]) :- revl(RT, T), append(RT, [H], R).
+```
+
+Alternative:
+
+```prolog
+reverseList([H], [H]).
+reverseList([H|T], R) :- reverseList(T, T2), append(T2, [H], R).
+```
+
 **Find the smallest element of a list**
 
+```prolog
+% Find the smallest element of a list, tail-recursive; note that min_list/2 is already taken
+min(Min, X, Y) :- % finds the min of two values
+  X < Y, Min is X;
+  X >= Y, Min is Y.
+% Beware that min_list exists already
+minl(Min, [H|T]) :- minl(Min, T, H). % default min is head
+minl(Min, [], Min). % Base case is empty list, return calculated min
+minl(Min, [H|T], X) :- min(CurrMin, H, X), minl(Min, T, CurrMin).
+```
+
+Alternative:
+
+```prolog
+%% Find the smallest element of a list.
+smallest([H], H).
+smallest([Head|Tail], Small) :- smallest(Tail, Small2), Small2 < Head, Small is Small2.
+smallest([Head|Tail], Small) :- smallest(Tail, Small2), Head < Small2, Small is Head.
+```
+
 **Sort the elements of a list**
+```prolog
+% Let's use selection sort since we've already built minl
+takeout(RetList, X, List) :- list(List), takeout(RetList, X, List, []).
+takeout(RetList, H, [H|T], Past) :- append(Past, T, RetList).
+takeout(RetList, X, [H|T], Past) :-
+  append(Past, [H], P),
+  takeout(RetList, X, T, P).
+
+sortl(Sorted, List) :- list(List), sortl(Sorted, List, []).
+sortl(Sorted, [], Sorted).
+sortl(Sorted, List, Partial) :-
+  minl(Min, List),
+  takeout(Rest, Min, List),
+  append(Partial, [Min], NewList),
+  sortl(Sorted, Rest, NewList).
+
+% sortl is O(n^2); it is also stable
+```
+
+Alternative:
+
+```prolog
+without([], _, []).
+without([H|T], H, T).
+without([H|T], Item, [H|T2]) :- \+(H = Item), without(T, Item, T2).
+
+%% Doesn't yet support duplicates
+sortList([H], [H]).
+sortList(L, [H2|T2]) :- smallest(L, H2), without(L, H2, L2), sortList(L2, T2).
+```
 
 ## Day 3: Blowing Up Vegas
 

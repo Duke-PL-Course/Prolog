@@ -148,9 +148,9 @@ Alternative:
 
 ```prolog
 %% Find the smallest element of a list.
-smallest([H], H).
-smallest([Head|Tail], Small) :- smallest(Tail, Small2), Small2 < Head, Small is Small2.
-smallest([Head|Tail], Small) :- smallest(Tail, Small2), Head < Small2, Small is Head.
+smallest(H, [H]).
+smallest(Small, [Head|Tail]) :- smallest(Small2, Tail), Small2 < Head, Small is Small2.
+smallest(Small, [Head|Tail]) :- smallest(Small2, Tail), Head =< Small2, Small is Head.
 ```
 
 **Sort the elements of a list**
@@ -177,12 +177,11 @@ Alternative:
 
 ```prolog
 without([], _, []).
-without([H|T], H, T).
-without([H|T], Item, [H|T2]) :- \+(H = Item), without(T, Item, T2).
+without(T, H, [H|T]).
+without([H|T2], Item, [H|T]) :- \+(H = Item), without(T2, Item, T).
 
-%% Doesn't yet support duplicates
 sortList([H], [H]).
-sortList(L, [H2|T2]) :- smallest(L, H2), without(L, H2, L2), sortList(L2, T2).
+sortList([H2|T2], L) :- smallest(H2, L), without(L2, H2, L), sortList(T2, L2).
 ```
 
 ## Day 3: Blowing Up Vegas

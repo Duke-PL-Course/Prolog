@@ -35,7 +35,7 @@ true
 
 ---
 
-## Q2: Duplicate the elements of a list. (33%)
+## Q2: Duplicate the elements of a list (33%)
 
 Produce a list that contains 2 copies of every element in the original list in order.
 
@@ -56,6 +56,28 @@ L = [1,2,a,b]
 * Establish the base case for recursion first and build up the logic
 * Use `[H|T]` to destruct a list in to the head and tail
 * Use the predefined predicate `append/3`
+
+---
+
+## Q2.5: Duplicate the elements of a list N times [Optional]
+
+If you are feeling ambitious, you can write a more generalized version of the function that allows you to specify how many copies of each element you want in the duplicate list.
+
+Example:
+```
+?- duplicateN(L, [1, 2, a, b], 3).
+L = [1,1,1,2,2,2,a,a,a,b,b,b]
+
+?- duplicateN([1,1,1,2,2,2,a,a,a,b,b,b], [1, 2, a, b], 3).
+true
+
+?- duplicateN([1,1,1,2,2,2,a,a,a,b,b,b], L, 3).
+L = [1,2,a,b]
+```
+
+### Hint
+
+* Aside from the same hints above, you should define a rule that appends `N` copies on an item to a list. Something like `prependN(NewList, N, List, Item)`
 
 ---
 

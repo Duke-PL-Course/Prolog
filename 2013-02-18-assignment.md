@@ -64,7 +64,7 @@ L = [1,2,a,b]
 If you are feeling ambitious, you can write a more generalized version of the function that allows you to specify how many copies of each element you want in the duplicate list.
 
 Example:
-```
+```prolog
 ?- duplicateN(L, [1, 2, a, b], 3).
 L = [1,1,1,2,2,2,a,a,a,b,b,b]
 

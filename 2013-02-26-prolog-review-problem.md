@@ -22,18 +22,20 @@ R = []
 
 ## Partition with Index
 
-Modify the solution from above to partition based on a **0 based index** rather than a pivot value
+Modify the solution from above to partition based on **an index** rather than a pivot value. You can also specify a base index that corresponds to the first element in the list. (i.e. 0 based or n based index)
+
+Signature: `partitionIndex(Left, Right, List, Index, BaseIndex)`
 
 ```prolog
-?- partition(L, R, [a, b, c], 2).
+?- partitionIndex(L, R, [a, b, c], 1, 0).
 
-L = [a,b,c]
-R = []
+L = [a,b]
+R = [c]
 
-?- partition(L, R, [a, b, c, d, e, f], 2).
+?- partitionIndex(L, R, [a, b, c], 1, 1).
 
-L = [a,b,c]
-R = [d,e,f]
+L = [a]
+R = [b,c]
 ```
 
 ## Hint

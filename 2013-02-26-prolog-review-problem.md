@@ -1,4 +1,4 @@
-# Ruby Practice Review Problem
+# Prolog Practice Review Problem
 
 ## Partition
 

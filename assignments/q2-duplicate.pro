@@ -1,0 +1,1 @@
+duplicate(DuplicateList, List) :- % logic

@@ -1,0 +1,1 @@
+flattenList(FlattenedList, List) :- % Logic

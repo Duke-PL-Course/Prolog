@@ -1,0 +1,1 @@
+degree(N, Node, (Vertices, [(V1, V2)|Edges])) :- % logic
